@@ -3,16 +3,19 @@ import { useState, useEffect } from "react"
 import Avatar from "react-avatar"
 import Users from "../Components/Users";
 import { REACT_APP_BACKEND } from "../baseUrl";
+import loader from '../assets/loader.gif'
 
 export default function Dashboard(){
 
     const[name, setName] = useState('');
     const[balance, setBalance] = useState('');
+    const[loading, setLoading] = useState(false)
 
     useEffect(() => {
 
 
         const fetchData = async () => {
+            setLoading(true)
             const resp = await axios.get(`${REACT_APP_BACKEND}user/me/`, {
                 headers: {
                     'Authorization': `${localStorage.getItem('token')}`
@@ -21,6 +24,7 @@ export default function Dashboard(){
             
             setName(resp.data.firstname)
             setBalance(Number(parseFloat(resp.data.balance).toFixed(2)));
+            setLoading(false)
         }
         fetchData();
 
@@ -28,6 +32,12 @@ export default function Dashboard(){
 
     return(
         <>
+        {loading && ( 
+            <div className="w-screen h-screen flex justify-center items-center">
+                    
+                <img src={loader} alt="" />
+            </div>
+        )}
         <div className="m-5">
             <div className="flex justify-between">
                 <p className="text-3xl font-black">Payment App</p>

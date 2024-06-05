@@ -4,6 +4,7 @@ import axios from "axios"
 import LabelledInput from '../Components/LabelledInput'
 import Button from '../Components/Button'
 import { REACT_APP_BACKEND } from '../baseUrl';
+import loader from '../assets/loader.gif'
 
 export default function Signin(){
 
@@ -11,6 +12,7 @@ export default function Signin(){
         email: "",
         password: ""
     });
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     function onChange(e){
@@ -21,6 +23,7 @@ export default function Signin(){
     }
 
     const signin = async () => {
+        setLoading(true)
         try{
             
             const resp = await axios.post(`${REACT_APP_BACKEND}user/signin/`, {
@@ -35,11 +38,20 @@ export default function Signin(){
         catch(err){
             alert(`${err.response.data.message}`)
         }
+        finally{
+            setLoading(false)
+        }
 
     }
 
     return(
         <>
+            {loading && ( 
+                <div className="w-screen h-screen flex justify-center items-center">
+                    
+                    <img src={loader} alt="" />
+                </div>
+            )}
             <div className="w-screen h-screen flex justify-center items-center">
                 <div className="p-4 m-4 bg-slate-400 rounded-lg">
                     <p className="text-3xl font-black text-center">Sign In</p>

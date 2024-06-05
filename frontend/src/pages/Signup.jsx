@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import LabelledInput from '../Components/LabelledInput';
 import Button from '../Components/Button';
-import { REACT_APP_BACKEND } from '../baseUrl';
+import { REACT_APP_BACKEND } from '../baseUrl'
+import loader from '../assets/loader.gif'
 
 export default function Signup(){
 
@@ -13,6 +14,7 @@ export default function Signup(){
         password: "",
         email: ""
     });
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
 
     const onChange = (e) => {
@@ -24,6 +26,7 @@ export default function Signup(){
 
     const signup = async (e) => {
         e.preventDefault();
+        setLoading(true)
         try {
             const resp = await axios.post(`${REACT_APP_BACKEND}user/signup/`, {
                 firstname: formData.firstname.charAt(0).toUpperCase() + formData.firstname.slice(1),
@@ -37,12 +40,20 @@ export default function Signup(){
             navigate("/dashboard");
         } catch (err) {
             alert(`${err.response.data.message}`)
+        }finally{
+            setLoading(false)
         }
     }
 
 
     return(
         <>
+            {loading && ( 
+                <div className="w-screen h-screen flex justify-center items-center">
+                    
+                    <img src={loader} alt="" />
+                </div>
+            )}
             <div className="w-screen h-screen flex justify-center items-center">
                 <div className=" py-4 bg-slate-400 rounded-lg">
                     <p className="text-3xl font-black text-center">Sign Up</p>
