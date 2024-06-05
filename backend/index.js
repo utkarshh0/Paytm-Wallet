@@ -5,7 +5,7 @@ const rootRouter = require('./routes/index')
 const app = express();
 
 const corsOptions = {
-    origin: "http://localhost:5173",
+    origin: "https://paytmwallet.netlify.app/",
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization']
 };
