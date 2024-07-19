@@ -38,7 +38,7 @@ export default function Dashboard(){
                 <img src={loader} alt="" />
             </div>
         )}
-        <div className="mx-24 my-12">
+        <div className="mx-8 md:mx-12 lg:mx-24 my-4  md:my-8 lg:my-12">
             <div className="flex justify-between">
                 <p className="text-3xl font-black">Payment App</p>
                 <div>
