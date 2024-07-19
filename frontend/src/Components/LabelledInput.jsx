@@ -1,18 +1,22 @@
 import PropTypes from 'prop-types';
 
-export default function LabelledInput({value, onChange, name, title, type}) {
+export default function LabelledInput({value, onChange, name, title, type, errors}) {
     return (
         <>
-            <label className="block mb-1 mt-3 font-medium" htmlFor={name}>{title}</label>
-            <input className="my-1 w-full p-2 rounded-md" 
-                value={value} 
-                onChange={onChange} 
-                name={name}
-                type={type}
-                placeholder={title} 
-                autoComplete='true'
-                autoCapitalize='true'
-            />
+            <div className='w-full'>
+                {/* <label className="w-full font-medium" htmlFor={name}>{title}</label> */}
+                <input className={`w-full p-2 my-3 border rounded-md  ${errors[name] ? `border-red-600` : ``}`} 
+                    value={value} 
+                    onChange={onChange} 
+                    name={name}
+                    type={type}
+                    placeholder={title} 
+                    autoComplete='true'
+                    autoCapitalize='true'
+                />
+                {errors && errors[name] && <p className='text-red-600'>{errors[name]}</p>}
+            </div>
+
         </>
     );
 }
