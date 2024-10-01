@@ -9,8 +9,8 @@ import loader from '../assets/loader.gif'
 export default function Signin(){
 
     const [formData, setFromData] = useState({
-        email: "",
-        password: ""
+        email: "utkkk@gmail.com",
+        password: "utkarshhh"
     });
     const[errors, setErrors] = useState({})
 
@@ -91,7 +91,7 @@ export default function Signin(){
 
                         <Button onClick={signin} title="Sign In" />
 
-                        <p className="font-medium text-center">Dont have an account ? <a className="underline" onClick={() => navigate("/")}>Sign Up</a></p>
+                        <p className="font-medium text-center">Dont have an account ? <a className="underline" onClick={() => navigate("/signup")}>Sign Up</a></p>
                     </form>
                 </div>
             </div>

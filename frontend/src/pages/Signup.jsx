@@ -108,7 +108,7 @@ export default function Signup(){
 
                         <Button onClick={signup} title="Signup"/>
 
-                        <p className="font-medium text-center">Already have an account ? <a className="underline" onClick={() => navigate("/signin")} >Login</a></p>
+                        <p className="font-medium text-center">Already have an account ? <a className="underline" onClick={() => navigate("/")} >Login</a></p>
                     </form>
                 </div>
             </form>
